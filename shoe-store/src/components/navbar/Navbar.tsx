@@ -1,7 +1,26 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom';
+import { count } from 'console'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { addText } from '../../redux/search/slice'
 
 export const Navbar = () => {
+  const [searchFlag, setSearchFlag] = useState(0)
+  const [inputValue, setInputValue] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const clickHandle = () => {
+    setSearchFlag(prev => prev += 1)
+    if (searchFlag === 1) {
+      navigate('/catalog')
+      setSearchFlag(0)
+    }
+  }
+  const { count } = useSelector(state => state.cart)
+  const changeHandle = (e) => {
+    setInputValue(e.target.value)
+    dispatch(addText(e.target.value))
+  }
   return (
     <>
       <header className="container">
@@ -28,14 +47,14 @@ export const Navbar = () => {
                           </ul>
                           <div>
                               <div className="header-controls-pics">
-                                  <div data-id="search-expander" className="header-controls-pic header-controls-search"></div>
-                                  <div className="header-controls-pic header-controls-cart">
-                                      <div className="header-controls-cart-full">1</div>
+                                  <div data-id="search-expander" className="header-controls-pic header-controls-search" onClick={clickHandle}></div>
+                                  <Link to='/cart' className="header-controls-pic header-controls-cart">
+                                      {count > 0 && <div className="header-controls-cart-full">{count}</div>}
                                       <div className="header-controls-cart-menu"></div>
-                                  </div>
+                                  </Link>
                               </div>
-                              <form data-id="search-form" className="header-controls-search-form form-inline invisible">
-                                  <input className="form-control" placeholder="Поиск"/>
+                              <form data-id="search-form" className={`header-controls-search-form form-inline ${searchFlag ? '' : 'invisible'}`}>
+                                  <input className="form-control" placeholder="Поиск" value={inputValue} onChange={changeHandle}/>
                               </form>
                           </div>
                       </div>

@@ -1,15 +1,13 @@
 import React from 'react'
+import { Banner } from '../banner/Banner'
 
-export const PageNotFound = () => {
+export const PageNotFound: React.FC = () => {
   return (
     <>
     <main className="container">
       <div className="row">
         <div className="col">
-          <div className="banner">
-            <img src="./img/banner.jpg" className="img-fluid" alt="К весне готовы!"/>
-            <h2 className="banner-header">К весне готовы!</h2>
-          </div>
+          <Banner></Banner>
           <section className="top-sales">
             <h2 className="text-center">Страница не найдена</h2>
             <p>
