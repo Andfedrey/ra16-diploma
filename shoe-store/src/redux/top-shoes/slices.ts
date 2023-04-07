@@ -4,7 +4,7 @@ import { Status, type ShoesSliceState } from './types'
 
 const initialState: ShoesSliceState = {
   items: [],
-  status: Status.PENDING,
+  status: Status.LOADING,
   error: ''
 }
 
@@ -18,20 +18,16 @@ const shoesSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchShoes.pending,
-      (state, action) => {
-        state.status = Status.PENDING
-        state.items = state.status
-      }),
+    builder.addCase(fetchShoes.pending, (state, action) => {
+      state.status = Status.LOADING
+    })
     builder.addCase(fetchShoes.fulfilled, (state, action) => {
       state.status = Status.SUCCESS
       state.items = action.payload
-      state.error = null
-    }),
+    })
     builder.addCase(fetchShoes.rejected, (state, action) => {
       state.status = Status.ERROR
-      state.items = state.status
-      state.error = action.payload
+      state.items = []
     })
   }
 })

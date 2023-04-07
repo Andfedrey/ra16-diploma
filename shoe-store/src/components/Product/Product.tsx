@@ -6,19 +6,33 @@ import { addProductsInCart } from '../../redux/cart/slice'
 import { decrementProduct, incrementProduct, backToInitialValue } from '../../redux/product/slice'
 import { fetchCatalogShoes } from '../../redux/shoes/asyncAction'
 import { Banner } from '../banner/Banner'
+import { Loader } from '../loader/Loader'
 
 export const Product = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { oneItem } = useSelector((state) => state.catalogShoes)
+  const { oneItem, status } = useSelector((state) => state.catalogShoes)
   const { count } = useSelector(state => state.product)
   const [img, setImg] = useState([])
   const [sizes, setSizes] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loader, setLoader] = useState(true)
   const [choiceSize, setChoiceSize] = useState(0)
   const navigate = useNavigate()
   const refSize = useRef()
+  console.log(status)
 
+  useEffect(() => {
+    let t
+    if (status === 'loading') {
+      setLoader(true)
+      t = setTimeout(() => {
+        setLoader(false)
+      }, 1000)
+    }
+    if (status === 'completed') {
+      return () => { clearTimeout(t) }
+    }
+  }, [status])
   const checkSize = (id, size) => {
     refSize.current = id
     setChoiceSize(size)
@@ -33,15 +47,6 @@ export const Product = () => {
       setSizes(oneItem.sizes.filter(el => el.available))
     }
   }, [oneItem])
-
-  useEffect(() => {
-    const timeset = setTimeout(() => {
-      setLoading(false)
-    }, 500)
-    return () => {
-      clearTimeout(timeset)
-    }
-  }, [])
 
   const buyProduct = () => {
     (choiceSize) ? navigate('/cart') : alert('выберите размер')
@@ -65,8 +70,11 @@ export const Product = () => {
                     <h2 className="text-center">{oneItem.title}</h2>
                     <div className="row">
                         <div className="col-5">
-                            {loading
-                              ? (<h1>Loading</h1>)
+                            {loader
+                              ? (
+                              <div className= 'loader-one-card'>
+                              <Loader />
+                              </div>)
                               : (
                                 <img src={img[0]}
                                 className="img-fluid" alt=""/>
