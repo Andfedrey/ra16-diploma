@@ -19,7 +19,6 @@ export const Product = () => {
   const [choiceSize, setChoiceSize] = useState(0)
   const navigate = useNavigate()
   const refSize = useRef()
-  console.log(status)
 
   useEffect(() => {
     let t
