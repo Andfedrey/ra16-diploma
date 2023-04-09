@@ -1,13 +1,13 @@
-import React from 'react'
-import { Banner } from '../banner/Banner'
-import { Cards } from '../Cards/Cards'
-import { Categories } from '../categories/Categories'
-import { Search } from '../search/Search'
+import React from 'react';
+import { Banner } from '../banner/Banner';
+import { Cards } from '../Cards/Cards';
+import { Categories } from '../categories/Categories';
+import { Search } from '../search/Search';
 
 export const CatalogPage: React.FC = () => {
   return (
     <main className="container">
-      <Banner/>
+      <Banner />
       <div className="row">
         <div className="col">
           <section className="catalog">
@@ -19,5 +19,5 @@ export const CatalogPage: React.FC = () => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};

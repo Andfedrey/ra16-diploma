@@ -1,33 +1,42 @@
-export const counterPrice = (items) => {
-  return Array.isArray(items) && items?.map(item => item.price * item.counter).reduce((acc, val) => acc + val, 0)
-}
+import { actionDeleteType, CartItems } from "../redux/cart/type";
 
-export const getCounteOfProducts = (items) => {
-  return Array.isArray(items) && items?.reduce((acc, val) => acc + val.counter, 0)
-}
+export const counterPrice = (items:CartItems[]) => {
+    const allPrices = Array.isArray(items) && items?.map((item) => item.price && item.price * item.counter)
+    const totalAmount = Array.isArray(allPrices) && allPrices?.reduce((acc:number, val) =>  val ? acc + val : acc , 0)
+    return totalAmount
+};
 
-export const deleteProductInCart = (id, size) => {
-  const items = JSON.parse(localStorage.getItem('userCart'))
-  if (!Array.isArray(items)) {
-    return
+export const getCounteOfProducts = (items:CartItems[]) => {
+  return (
+    Array.isArray(items) && items?.reduce((acc:number, val) => acc + val.counter, 0)
+  );
+};
+
+export const deleteProductInCart = (info:actionDeleteType) => {
+  const { id, size } = info;
+  const dataJson = localStorage.getItem('userCart');
+  const data = dataJson ? JSON.parse(dataJson) : null
+  if (!Array.isArray(data)) {
+    return;
   }
-  const newItems = items.filter(el => el.id !== id || el.sizes !== size)
-  localStorage.setItem('userCart', JSON.stringify(newItems))
-}
+  const newItems = data.filter((el) => el.id !== id || el.sizes !== size);
+  localStorage.setItem('userCart', JSON.stringify(newItems));
+};
 
-export const getCountProduct = (item) => {
-  return item.reduce((acc, val) => (acc + val.counter), 0)
-}
+export const getCountProduct = (item:CartItems[]) => {
+  return item.reduce((acc, val) => acc + val.counter, 0);
+};
 export const createInitialStateCart = () => {
-  const info = JSON.parse(localStorage.getItem('userCart'))
-  const price = counterPrice(info)
-  const numberOfProduct = getCounteOfProducts(info)
-  const counter = getCountProduct(info)
+  const dataJson = localStorage.getItem('userCart')
+  const info = dataJson ? JSON.parse(dataJson) : [];
+  const price = counterPrice(info);
+  const numberOfProduct = getCounteOfProducts(info);
+  const counter = getCountProduct(info);
 
   return {
     items: info,
     numberOfProduct,
     price,
-    counter
-  }
-}
+    counter,
+  };
+};

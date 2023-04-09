@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-export const LoadMore: React.FC = ({ clickHandle }) => {
+type TLoadmore = {
+  clickHandle: () => void;
+};
+export const LoadMore: React.FC<TLoadmore> = ({ clickHandle }) => {
   return (
-    <button className="btn btn-outline-primary" onClick={clickHandle}>Загрузить ещё</button>
-  )
-}
+    <button className="btn btn-outline-primary" onClick={clickHandle}>
+      Загрузить ещё
+    </button>
+  );
+};

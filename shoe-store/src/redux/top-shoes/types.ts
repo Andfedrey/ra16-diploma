@@ -1,9 +1,9 @@
 export interface Shoes {
-  id: number
-  category: number
-  title: string
-  price: number
-  images: string[]
+  id: number;
+  category: number;
+  title: string;
+  price: number;
+  images: string[];
 }
 
 export enum Status {
@@ -13,7 +13,7 @@ export enum Status {
 }
 
 export interface ShoesSliceState {
-  items: Shoes[]
-  status: Status
-  error: string
+  items: Shoes[];
+  status: Status;
+  error: string;
 }

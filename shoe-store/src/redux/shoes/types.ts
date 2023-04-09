@@ -1,9 +1,18 @@
-export interface Shoes {
-  id: number
-  category: number
-  title: string
-  price: number
-  images: string[]
+export interface ShoesInterface {
+  id: number;
+  category: number;
+  title: string;
+  images: string[];
+  sku: string;
+  manufacturer: string;
+  color: string;
+  material: string;
+  reason: string;
+  season: string;
+  heelSize: string;
+  price: number;
+  oldPrice: number;
+  sizes: { size: string; available: boolean }[];
 }
 
 export enum Status {
@@ -13,7 +22,19 @@ export enum Status {
 }
 
 export interface CatalogShoesSlice {
-  items: Shoes[]
-  oneItem: Shoes | null
-  status: Status
+  items: ShoesInterface[];
+  oneItem: ShoesInterface | null;
+  status: Status;
+}
+
+export interface ParamsInterface {
+  categories?: number;
+  offset?: number;
+  q?: string;
+  id?: string;
+}
+
+export interface FetchParams {
+  product: ShoesInterface[] | ShoesInterface;
+  productsArr: ShoesInterface[];
 }

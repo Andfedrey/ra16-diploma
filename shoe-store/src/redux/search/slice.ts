@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import { SearchType } from './types';
 
-const initialState: any = {
-  inputValue: ''
-}
+const initialState: SearchType = {
+  inputValue: '',
+};
 
 const catalogShoesSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    addText (state, action) {
-      state.inputValue = action.payload
-    }
-  }
+    addText(state, action) {
+      state.inputValue = action.payload;
+    },
+  },
+});
 
-})
-
-export const { addText } = catalogShoesSlice.actions
-export default catalogShoesSlice.reducer
+export const { addText } = catalogShoesSlice.actions;
+export default catalogShoesSlice.reducer;

@@ -1,3 +1,1 @@
-export interface Search {
-  inputValue: string
-}
+export type SearchType = { inputValue: string };
