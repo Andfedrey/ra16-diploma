@@ -11,7 +11,7 @@ import { fetchCatalogShoes } from '../../redux/shoes/asyncAction';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { Banner } from '../banner/Banner';
 import { Loader } from '../loader/Loader';
-import {CartItems} from '../../redux/cart/type'
+import { CartItems } from '../../redux/cart/type';
 
 export const Product = () => {
   const { id } = useParams();

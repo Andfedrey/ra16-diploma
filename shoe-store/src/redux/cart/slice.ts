@@ -10,7 +10,7 @@ import { actionDeleteType, CartItems, CartSliceState } from './type';
 const { items, numberOfProduct, price, counter } = createInitialStateCart();
 const initialState: CartSliceState = {
   items: items || [],
-  numberOfProduct,
+  numberOfProduct: 0,
   price,
   count: counter,
 };
@@ -20,7 +20,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductsInCart(state, action: PayloadAction<CartItems>) {
-      console.log(action.payload);
       state.items = checkingProduct(action.payload, state.items);
       state.count = getCountProduct(state.items);
       state.price = counterPrice(state.items);

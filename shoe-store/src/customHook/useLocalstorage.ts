@@ -1,6 +1,7 @@
+import { CartItems } from '../redux/cart/type';
 import { counterPrice } from './cartFunctions';
 
-export const checkingProduct = (item, arr) => {
+export const checkingProduct = (item:CartItems, arr:CartItems[]) => {
   const { id, sizes, counter: count } = item;
   const index = arr.findIndex((el) => el.id === id && el.sizes === sizes);
   if (index > -1) {
@@ -17,9 +18,9 @@ export const checkingProduct = (item, arr) => {
 };
 
 export const useLocalStorage = (key: string, initialValue: any) => {
-  const data = JSON.parse(localStorage.getItem(key)) || [];
+  const dataJson = localStorage.getItem(key);
+  const data = dataJson ? JSON.parse(dataJson) : [];
   const newProduct = checkingProduct(initialValue, data);
-  localStorage.clear();
   localStorage.setItem(key, JSON.stringify(newProduct));
   const price = counterPrice(newProduct);
   return {
