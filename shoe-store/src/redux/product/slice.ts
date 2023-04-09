@@ -18,12 +18,12 @@ export const producSlice = createSlice({
     },
     decrementProduct: (state) => {
       if (state.count > 1) {
-        state.count--;
+        state.count -= 1;
       }
     },
     incrementProduct: (state) => {
       if (state.count < 10) {
-        state.count++;
+        state.count += 1;
       }
     },
   },

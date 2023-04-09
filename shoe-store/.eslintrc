@@ -92,6 +92,8 @@
       }
     ],
     "no-return-await": "off",
-    "@typescript-eslint/return-await": "error"
+    "@typescript-eslint/return-await": "error",
+    "comma-dangle": "off",
+    "eslint no-return-await": 0
   }
 }

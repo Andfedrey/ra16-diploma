@@ -41,8 +41,8 @@ export const Product = () => {
       };
     }
   }, [status]);
-  const checkSize = (id: number, size: string): void => {
-    refSize.current = id;
+  const checkSize = (idProduct: number, size: string) => {
+    refSize.current = idProduct;
     setChoiceSize(size);
   };
 
@@ -121,14 +121,14 @@ export const Product = () => {
                       <p>Размеры в наличии: </p>{' '}
                       {sizes.length >= 1 ? (
                         <>
-                          {sizes.map((el, id) => (
+                          {sizes.map((el, i) => (
                             <span
                               className={`catalog-item-size ${
-                                refSize.current === id ? 'selected' : ''
+                                refSize.current === i ? 'selected' : ''
                               } `}
-                              key={id}
+                              key={i}
                               onClick={(e) => {
-                                checkSize(id, el.size);
+                                checkSize(i, el.size);
                               }}
                             >
                               {el.size}

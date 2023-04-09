@@ -9,7 +9,7 @@ export interface Shoes {
 export enum Status {
   LOADING = 'loading',
   SUCCESS = 'completed',
-  ERROR = 'error',
+  ERROR = 'error'
 }
 
 export interface ShoesSliceState {

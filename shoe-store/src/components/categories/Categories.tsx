@@ -36,7 +36,7 @@ export const Categories: React.FC = () => {
             Все
           </Link>
         </li>
-        {types.map((category: any) => (
+        {types.map((category) => (
           <li className="nav-item" key={category.id}>
             <Link
               className={`nav-link ${

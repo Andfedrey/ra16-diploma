@@ -16,7 +16,10 @@ export const fetchCatalogShoes = createAsyncThunk(
         ),
       ]);
       const dataArr = await Promise.all(
-        reponses.map(async (el) => await el.json())
+        reponses.map(async (el) =>{ 
+          const result = await el.json()
+          return result
+        })
       );
       return dataArr;
     } catch (e: unknown) {

@@ -18,7 +18,7 @@ export interface ShoesInterface {
 export enum Status {
   LOADING = 'loading',
   SUCCESS = 'completed',
-  ERROR = 'error',
+  ERROR = 'error'
 }
 
 export interface CatalogShoesSlice {
