@@ -62,10 +62,12 @@ export const Product = () => {
   };
 
   const addToLocalStorage = () => {
-    const newProductToAdd = { ...oneItem, sizes: choiceSize, counter: count };
-    if (newProductToAdd) {
-      dispatch(addProductsInCart(newProductToAdd));
-      LocalStorage('userCart', newProductToAdd);
+    if(choiceSize) {
+      const newProductToAdd = { ...oneItem, sizes: choiceSize, counter: count };
+      if (newProductToAdd) {
+        dispatch(addProductsInCart(newProductToAdd));
+        LocalStorage('userCart', newProductToAdd);
+      }
     }
   };
 

@@ -200,15 +200,33 @@ section {
 .catalog {
   min-height: 600px;
 }
+.card {
+  height: 100%;
+  display: flex;
+}
+
+.card-img-top{
+  width: 100%;
+}
+.col-4 {
+  margin: 10px 0;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 
 .catalog-categories {
   font-size: 1.3rem;
-  margin-bottom: 2em;
+  margin-bottom: calc(2em - 10px);
 }
 
 .catalog-item-card {
   margin-bottom: 1em;
 }
+
 
 .catalog-item-size {
   display: inline-block;

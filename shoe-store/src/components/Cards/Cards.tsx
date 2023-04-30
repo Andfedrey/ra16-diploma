@@ -45,18 +45,26 @@ export const Cards: React.FC = () => {
     );
   };
 
+  if(items.length === 0) {
+    return(
+      <h1>Товара нет в наличии</h1>
+    )
+  }
+
+  if(loader) {
+    return (
+      <Loader></Loader>
+    )
+  }
+
   return (
     <div>
       <div className="row">
-        {loader ? (
-          <Loader></Loader>
-        ) : (
-          items?.map((el, id) => (
+          {items?.map((el, id) => (
             <div className="col-4" key={el.id}>
               <OneProduct product={el}></OneProduct>
             </div>
-          ))
-        )}
+          ))}
       </div>
       <div className={`text-center ${items.length < 6 && 'hidden'}`}>
         <LoadMore clickHandle={clickHandle}></LoadMore>

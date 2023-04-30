@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { addText } from '../../redux/search/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
+import { fetchCatalogShoes } from '../../redux/shoes/asyncAction';
 
 export const Navbar = () => {
   const [searchFlag, setSearchFlag] = useState(0);
@@ -32,7 +33,7 @@ export const Navbar = () => {
               <div className="collapase navbar-collapse" id="navbarMain">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/">
+                    <NavLink className="nav-link" to="/" onClick={() => dispatch(addText(''))}>
                       Главная
                     </NavLink>
                   </li>
